@@ -25,7 +25,9 @@
 #else
 #define BOOTENV_COMMON\
     "kernel_addr_r=0x2000000\0"\
-    "kernel_img=fit.itb\0"\
+    "devtree_addr_r=0x3000000\0"\
+    "kernel_img=uImage\0"\
+    "device_tree=system.dtb\0"\
     "load_dev=mmc 0:1\0"\
     "boot_dev=mmcblk0p2\0"\
     "boot_os="\
@@ -34,7 +36,8 @@
             "root=/dev/${boot_dev} "\
             "rootwait earlyprintk;"\
         "load ${load_dev} ${kernel_addr_r} ${kernel_img}; "\
-        "bootm ${kernel_addr_r}\0"
+        "load ${load_dev} ${devtree_addr_r} ${device_tree}; "\
+        "bootm ${kernel_addr_r} - ${devtree_addr_r}\0"
 
 #define BOOTENV_QSPI \
     "dfu_alt_info="\
