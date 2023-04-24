@@ -12,8 +12,6 @@
 
 	aliases {
 		serial0 = &uart1;
-		spi0 = &qspi;
-		mmc0 = &sdhci0;
 	};
 
 	memory@0 {
@@ -96,7 +94,7 @@
 
 &usb0 {
 	status = "okay";
-	dr_mode = "host";
+	dr_mode = "peripheral";
 	usb-phy = <&usb_phy0>;
+	usb-reset = <&gpio0 10 0>;
 };
-
